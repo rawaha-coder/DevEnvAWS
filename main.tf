@@ -36,7 +36,32 @@ resource "aws_route_table" "rwh_public_route_table" {
 }
 
 resource "aws_route" "default_route" {
-  route_table_id = aws_route_table.rwh_public_route_table.id
+  route_table_id         = aws_route_table.rwh_public_route_table.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id = aws.aws_internet_gateway.rwh_internet_gateway.id
+  gateway_id             = aws_internet_gateway.rwh_internet_gateway.id
+}
+
+resource "aws_route_table_association" "rwh_public_rt_assoc" {
+  subnet_id      = aws_subnet.rwh_public_subnet.id
+  route_table_id = aws_route_table.rwh_public_route_table.id
+}
+
+resource "aws_security_group" "rwh_sg" {
+  name = "dev_sg"
+  description = "dev security group"
+  vpc_id = aws_vpc.rwh_vpc.id
+
+  ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
