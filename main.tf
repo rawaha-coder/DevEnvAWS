@@ -27,3 +27,16 @@ resource "aws_internet_gateway" "rwh_internet_gateway" {
   }
 }
 
+resource "aws_route_table" "rwh_public_route_table" {
+  vpc_id = aws_vpc.rwh_vpc.id
+
+  tags = {
+    Name = "dev-public-route-table"
+  }
+}
+
+resource "aws_route" "default_route" {
+  route_table_id = aws_route_table.rwh_public_route_table.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = aws.aws_internet_gateway.rwh_internet_gateway.id
+}
