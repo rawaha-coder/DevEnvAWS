@@ -1,0 +1,56 @@
+# Local .terraform directories
+**/.terraform/*
+.terraform/
+
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# .tfvars files
+*.tfvars
+
+# Override files
+override.tf
+
+# .terraformrc
+.terraformrc
+
+# terraform.rc
+terraform.rc
+
+# Ignore lock files
+.terraform.lock.hcl
+*.lock
+
+.DS_Store
+
+# Ignore sensitive files
+*.pem
+*.key
+*.pub
+*.p12
+*.pfx
+*.cer
+*.crt
+*.jks
+*.pem
+*.pkcs12
+*.asc
+
+# Ignore credentials and secrets
+.env
+*.env.*
+*.secret
+*.secrets
+*.password
+*.passwd
+*.pem
+*.key
+*.pfx
+*.p12
+*.pem
+*.jks
